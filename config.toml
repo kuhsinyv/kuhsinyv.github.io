@@ -159,9 +159,9 @@ theme = "uBlogger"
       # URL of avatar shown in home page
       avatarURL = "/images/avatar.png"
       #  title shown in home page (HTML format is supported)
-      title = ""
+      title = "kuhsinyv's blog"
       # subtitle shown in home page
-      subtitle = "This is My New Hugo Site"
+      subtitle = "enjoy coding..."
       # whether to show social links
       social = true
       #  disclaimer (HTML format is supported)
@@ -177,12 +177,12 @@ theme = "uBlogger"
 
   # Social config about the author
   [params.social]
-    GitHub = "xxxx"
+    GitHub = "kuhsinyv"
     Linkedin = ""
-    Twitter = "xxxx"
-    Instagram = "xxxx"
-    Facebook = "xxxx"
-    Telegram = "xxxx"
+    Twitter = ""
+    Instagram = ""
+    Facebook = ""
+    Telegram = ""
     Medium = ""
     Gitlab = ""
     Youtubelegacy = ""
@@ -239,7 +239,7 @@ theme = "uBlogger"
     XMPP = ""
     Matrix = ""
     Bilibili = ""
-    Email = "xxxx@xxxx.com"
+    Email = "kuhsinyv@gmail.com"
     RSS = true # 
 
   #  Page config
