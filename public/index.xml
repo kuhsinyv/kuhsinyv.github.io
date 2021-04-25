@@ -1,16 +1,29 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Hsinyv Ku&#39;s Ink</title>
-        <link>https://kuhsinyv.github.io/</link>
-        <description>Hsinyv Ku&#39;s Ink</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 24 Apr 2021 23:21:10 &#43;0800</lastBuildDate>
-            <atom:link href="https://kuhsinyv.github.io/index.xml" rel="self" type="application/rss+xml" />
-        <item>
-    <title>Hello World</title>
-    <link>https://kuhsinyv.github.io/posts/hello-world/</link>
-    <pubDate>Sat, 24 Apr 2021 23:21:10 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://kuhsinyv.github.io/posts/hello-world/</guid>
-    <description><![CDATA[Hello, Hugo!]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hsinyv Ku&#39;s Ink</title>
+    <link>https://kuhsinyv.github.io/</link>
+    <description>Recent content on Hsinyv Ku&#39;s Ink</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 24 Apr 2021 23:21:10 +0800</lastBuildDate><atom:link href="https://kuhsinyv.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://kuhsinyv.github.io/posts/hello-world/</link>
+      <pubDate>Sat, 24 Apr 2021 23:21:10 +0800</pubDate>
+      
+      <guid>https://kuhsinyv.github.io/posts/hello-world/</guid>
+      <description>Hello, Hugo! </description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://kuhsinyv.github.io/about/</link>
+      <pubDate>Sat, 24 Apr 2021 23:19:26 +0800</pubDate>
+      
+      <guid>https://kuhsinyv.github.io/about/</guid>
+      <description>Hi there! </description>
+    </item>
+    
+  </channel>
 </rss>
