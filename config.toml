@@ -1,4 +1,4 @@
-baseURL = ""
+baseURL = "http://0.0.0.0:1313"
 # [en, zh-cn, fr, ...] determines default content language
 defaultContentLanguage = "zh-cn"
 # language code
