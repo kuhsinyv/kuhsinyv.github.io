@@ -3,7 +3,14 @@
         <title>Hsinyv Ku&#39;s Ink</title>
         <link>http://0.0.0.0:1313/</link>
         <description>Hsinyv Ku&#39;s Ink</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 24 Apr 2021 23:21:10 &#43;0800</lastBuildDate>
             <atom:link href="http://0.0.0.0:1313/index.xml" rel="self" type="application/rss+xml" />
-        </channel>
+        <item>
+    <title>Hello World</title>
+    <link>http://0.0.0.0:1313/posts/hello-world/</link>
+    <pubDate>Sat, 24 Apr 2021 23:21:10 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://0.0.0.0:1313/posts/hello-world/</guid>
+    <description><![CDATA[Hello, Hugo!]]></description>
+</item></channel>
 </rss>
