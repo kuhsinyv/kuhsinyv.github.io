@@ -28,14 +28,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-      
-      - name: Push to Server
-        run: |
-          eval $(ssh-agent -s)
-          echo "${{secrets.DEPLOY_KEY}}" > deploy.key
-          mkdir -p ~/.ssh
-          chmod 0600 deploy.key
-          ssh-add deploy.key
-          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          ssh lighthouse@gxy.ink "cd /home/lighthouse/workbench/kuhsinyv.github.io && git pull && docker-compose restart"
-          rm -rf deploy.key
