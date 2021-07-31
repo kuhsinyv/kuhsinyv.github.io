@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ingress-nginx on Hsinyv Ku&#39;s Space</title>
+    <link>/tags/ingress-nginx/</link>
+    <description>Recent content in ingress-nginx on Hsinyv Ku&#39;s Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2021 Powered By Hsinyv Ku &lt;a href=&#34;https://beian.miit.gov.cn/&#34; target=&#34;_blank&#34;&gt;赣ICP备20002368号-1&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 29 Jul 2021 22:11:15 +0800</lastBuildDate><atom:link href="/tags/ingress-nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 k8s 上使用外部认证</title>
+      <link>/posts/use-external-auth-on-k8s/</link>
+      <pubDate>Thu, 29 Jul 2021 22:11:15 +0800</pubDate>
+      
+      <guid>/posts/use-external-auth-on-k8s/</guid>
+      <description>一、JSON Web Token 1. 什么是 JWT ？  详细内容请参考 RFC 7519。 JWT 是一个开放标准，它定义了一种用于将各方之间的信息作为 JSON 对象进行安全地传输的紧凑且自包含的方式。 由于信息被数字签名，因此可以验证和信任。 可以使用 HMAC、RSA 或 ECDSA 算法对 JWT 进行签名。  2. 什么时候该用它？  请求鉴权 信息传输（可以验证内容是否被篡改）  3. JWT 的结构   三个组成部分
+  Header
+{ &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; }   Payload
+ Registered claims (非强制性的)，如 iss、exp 和 sub 等。 Public claims Private claims  { &amp;#34;exp&amp;#34;: 1627544720, &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;username&amp;#34;: &amp;#34;6109119115&amp;#34;, &amp;#34;role&amp;#34;: &amp;#34;admin&amp;#34; }   Signature</description>
+      <content>&lt;h2 id=&#34;一json-web-token&#34;&gt;一、JSON Web Token&lt;/h2&gt;
+&lt;h3 id=&#34;1-什么是-jwt-&#34;&gt;1. 什么是 JWT ？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;详细内容请参考 &lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7519&#34;&gt;RFC 7519&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JWT&lt;/strong&gt; 是一个开放标准，它定义了一种用于&lt;strong&gt;将各方之间的信息作为 JSON 对象进行安全地传输&lt;/strong&gt;的紧凑且自包含的方式。&lt;/li&gt;
+&lt;li&gt;由于信息被数字签名，因此可以验证和信任。&lt;/li&gt;
+&lt;li&gt;可以使用 HMAC、RSA 或 ECDSA 算法对 &lt;strong&gt;JWT&lt;/strong&gt; 进行&lt;strong&gt;签名&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-什么时候该用它&#34;&gt;2. 什么时候该用它？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;请求鉴权&lt;/li&gt;
+&lt;li&gt;信息传输（可以验证内容是否被篡改）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-jwt-的结构&#34;&gt;3. JWT 的结构&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;三个组成部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Header&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;alg&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;HS256&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;typ&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;JWT&amp;#34;&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Payload&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Registered claims (非强制性的)，如 &lt;code&gt;iss&lt;/code&gt;、&lt;code&gt;exp&lt;/code&gt; 和 &lt;code&gt;sub&lt;/code&gt; 等。&lt;/li&gt;
+&lt;li&gt;Public claims&lt;/li&gt;
+&lt;li&gt;Private claims&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;exp&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;1627544720&lt;/span&gt;,
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;sub&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1234567890&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;6109119115&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;role&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;admin&amp;#34;&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Signature&lt;/p&gt;
+&lt;p&gt;以 HMAC SHA256 算法为例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HMACSHA256(base64UrlEncode(header) + &amp;quot;.&amp;quot; + base64UrlEncode(payload), secret)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个未经解析的 JWT 看起来像这样：&lt;code&gt;xxxxx.yyyyy.zzzzz&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在使用 Bearer 模式的 Authorization 请求头中：&lt;code&gt;Authorization: Bearer xxxxx.yyyyy.zzzzz&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-使用-jwt-的应用请求流程&#34;&gt;4. 使用 JWT 的应用请求流程&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/jwt-request.png&#34; alt=&#34;image-20210729161426928&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

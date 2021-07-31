@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on Hsinyv Ku&#39;s Space</title>
+    <link>/about/</link>
+    <description>Recent content in Abouts on Hsinyv Ku&#39;s Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2021 Powered By Hsinyv Ku &lt;a href=&#34;https://beian.miit.gov.cn/&#34; target=&#34;_blank&#34;&gt;赣ICP备20002368号-1&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 29 Jul 2021 23:24:06 +0800</lastBuildDate><atom:link href="/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于我</title>
+      <link>/about/about-me/</link>
+      <pubDate>Thu, 29 Jul 2021 23:24:06 +0800</pubDate>
+      
+      <guid>/about/about-me/</guid>
+      <description>Hi there!  🎒 I am an undergraduate student in Nanchang University (majoring in computer science, grade 2019). 💻 I&amp;rsquo;m working on some private projects for my school. 👬 I&amp;rsquo;m working on Internet projects with friends in a cozy &amp;ldquo;family&amp;rdquo; @NCUHOME 🏠! 📚 I&amp;rsquo;m learning about WEB backend development and part of the DevOps.  GithHub Stats 
+ More GitHub</description>
+      <content>&lt;h3 id=&#34;hi-there&#34;&gt;Hi there!&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;🎒 I am an undergraduate student in Nanchang University (majoring in computer science, grade 2019).&lt;/li&gt;
+&lt;li&gt;💻 I&amp;rsquo;m working on some private projects for my school.&lt;/li&gt;
+&lt;li&gt;👬 I&amp;rsquo;m working on Internet projects with friends in a cozy &amp;ldquo;family&amp;rdquo; &lt;a href=&#34;https://github.com/ncuhome&#34;&gt;@NCUHOME 🏠&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;📚 I&amp;rsquo;m learning about WEB backend development and part of the DevOps.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;githhub-stats&#34;&gt;GithHub Stats&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/anuraghazra/github-readme-stats&#34;&gt;&lt;img src=&#34;https://github-readme-stats.vercel.app/api?username=kuhsinyv&amp;amp;count_private=true&amp;amp;show_icons=true&amp;amp;theme=default&amp;amp;bg_color=45,69FF97,00E4FF&#34; alt=&#34;kuhsinyv&amp;rsquo;s GitHub stats&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;more&#34;&gt;More&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/kuhsinyv/&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
