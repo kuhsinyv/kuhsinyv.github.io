@@ -8,7 +8,7 @@ tags = ["kubernetes", "ingress-nginx"]
 keywords = ["external auth", "jwt"]
 description = "使用 nginx-ingress 和 Auth Service 认证请求"
 showFullContent = false
-draft = true
+draft = false
 publishDate = "2021-07-30T12:00:00+08:00"
 +++
 
