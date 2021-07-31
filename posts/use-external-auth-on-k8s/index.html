@@ -1,175 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html><html lang=en>
 <head>
-  
-    <title>在 k8s 上使用外部认证 :: Hsinyv Ku&#39;s Space</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="使用 nginx-ingress 和 Auth Service 认证请求" />
-<meta name="keywords" content="external auth, jwt" />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="/posts/use-external-auth-on-k8s/" />
-
-
-
-
-<link rel="stylesheet" href="/assets/style.css">
-
-
-
-
-
-
-<link rel="apple-touch-icon" href="/img/apple-touch-icon-192x192.png">
-
-  <link rel="shortcut icon" href="/img/favicon/orange.png">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
+<title>在 k8s 上使用外部认证 :: Hsinyv Ku's Space</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="使用 nginx-ingress 和 Auth Service 认证请求">
+<meta name=keywords content="external auth,jwt">
+<meta name=robots content="noodp">
+<link rel=canonical href=/posts/use-external-auth-on-k8s/>
+<link rel=stylesheet href=/assets/style.css>
+<link rel=apple-touch-icon href=/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/img/favicon/orange.png>
+<meta name=twitter:card content="summary">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
 <meta property="og:title" content="在 k8s 上使用外部认证">
-<meta property="og:description" content="使用 nginx-ingress 和 Auth Service 认证请求" />
-<meta property="og:url" content="/posts/use-external-auth-on-k8s/" />
-<meta property="og:site_name" content="Hsinyv Ku&#39;s Space" />
-
-  <meta property="og:image" content="/k8s-ingress-nginx.png">
-
+<meta property="og:description" content="使用 nginx-ingress 和 Auth Service 认证请求">
+<meta property="og:url" content="/posts/use-external-auth-on-k8s/">
+<meta property="og:site_name" content="Hsinyv Ku's Space">
+<meta property="og:image" content="/k8s-ingress-nginx.png">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-
-
-  <meta property="article:published_time" content="2021-07-29 22:11:15 &#43;0800 CST" />
-
-
-
-
-
-
-
-
-
-
-
-
+<meta property="article:published_time" content="2021-07-29 22:11:15 +0800 +0800">
 </head>
-<body class="orange">
-
-
-<div class="container headings--one-size">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    Hsinyv Ku
-  </div>
+<body class=orange>
+<div class="container center headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Hsinyv Ku
+</div>
 </a>
-
-    </div>
-    
-      <div class="menu-trigger">menu</div>
-    
-  </div>
-  
-    <nav class="menu">
-  <ul class="menu__inner menu__inner--desktop">
-    
-      
-        
-          <li><a href="/about">About</a></li>
-        
-      
-        
-          <li><a href="/posts">Posts</a></li>
-        
-      
-      
-    
-
-    
-  </ul>
-
-  <ul class="menu__inner menu__inner--mobile">
-    
-      
-        <li><a href="/about">About</a></li>
-      
-    
-      
-        <li><a href="/posts">Posts</a></li>
-      
-    
-    
-  </ul>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/about>About</a></li>
+<li><a href=/posts>Posts</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/about>About</a></li>
+<li><a href=/posts>Posts</a></li>
+</ul>
 </nav>
-
-  
 </header>
-
-
-  <div class="content">
-    
-<div class="post">
-  <h1 class="post-title">
-    <a href="/posts/use-external-auth-on-k8s/">在 k8s 上使用外部认证</a></h1>
-  <div class="post-meta">
-    
-      <span class="post-date">
-        2021-07-29 
-      </span>
-    
-    
-    <span class="post-author">:: kuhsinyv</span>
-    
-  </div>
-
-  
-  <span class="post-tags">
-    
-    #<a href="/tags/kubernetes/">kubernetes</a>&nbsp;
-    
-    #<a href="/tags/ingress-nginx/">ingress-nginx</a>&nbsp;
-    
-  </span>
-  
-
-  
-    <img src="/k8s-ingress-nginx.png" class="post-cover" alt="在 k8s 上使用外部认证" />
-  
-
-  
-
-  <div class="post-content"><div>
-        <h2 id="一json-web-token">一、JSON Web Token<a href="#一json-web-token" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<h3 id="1-什么是-jwt-">1. 什么是 JWT ？<a href="#1-什么是-jwt-" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=/posts/use-external-auth-on-k8s/>在 k8s 上使用外部认证</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-07-29
+</span>
+<span class=post-author>:: kuhsinyv</span>
+</div>
+<span class=post-tags>
+#<a href=/tags/kubernetes/>kubernetes</a>&nbsp;
+#<a href=/tags/ingress-nginx/>ingress-nginx</a>&nbsp;
+</span>
+<img src=/k8s-ingress-nginx.png class=post-cover alt="在 k8s 上使用外部认证">
+<div class=post-content><div>
+<h2 id=一json-web-token>一、JSON Web Token<a href=#一json-web-token class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<h3 id=1-什么是-jwt->1. 什么是 JWT ？<a href=#1-什么是-jwt- class=hanchor arialabel=Anchor>&#8983;</a> </h3>
 <ul>
-<li>详细内容请参考 <a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519</a>。</li>
+<li>详细内容请参考 <a href=https://datatracker.ietf.org/doc/html/rfc7519>RFC 7519</a>。</li>
 <li><strong>JWT</strong> 是一个开放标准，它定义了一种用于<strong>将各方之间的信息作为 JSON 对象进行安全地传输</strong>的紧凑且自包含的方式。</li>
 <li>由于信息被数字签名，因此可以验证和信任。</li>
 <li>可以使用 HMAC、RSA 或 ECDSA 算法对 <strong>JWT</strong> 进行<strong>签名</strong>。</li>
 </ul>
-<h3 id="2-什么时候该用它">2. 什么时候该用它？<a href="#2-什么时候该用它" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<h3 id=2-什么时候该用它>2. 什么时候该用它？<a href=#2-什么时候该用它 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
 <ul>
 <li>请求鉴权</li>
 <li>信息传输（可以验证内容是否被篡改）</li>
 </ul>
-<h3 id="3-jwt-的结构">3. JWT 的结构<a href="#3-jwt-的结构" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<h3 id=3-jwt-的结构>3. JWT 的结构<a href=#3-jwt-的结构 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
 <ul>
 <li>
 <p>三个组成部分</p>
 <ul>
 <li>
 <p>Header</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-  <span style="color:#f92672">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;alg&#34;</span>: <span style=color:#e6db74>&#34;HS256&#34;</span>,
+  <span style=color:#f92672>&#34;typ&#34;</span>: <span style=color:#e6db74>&#34;JWT&#34;</span>
 }
 </code></pre></div></li>
 <li>
@@ -179,11 +94,11 @@
 <li>Public claims</li>
 <li>Private claims</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;exp&#34;</span>: <span style="color:#ae81ff">1627544720</span>,
-  <span style="color:#f92672">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
-  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;6109119115&#34;</span>,
-  <span style="color:#f92672">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;exp&#34;</span>: <span style=color:#ae81ff>1627544720</span>,
+  <span style=color:#f92672>&#34;sub&#34;</span>: <span style=color:#e6db74>&#34;1234567890&#34;</span>,
+  <span style=color:#f92672>&#34;username&#34;</span>: <span style=color:#e6db74>&#34;6109119115&#34;</span>,
+  <span style=color:#f92672>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;admin&#34;</span>
 }
 </code></pre></div></li>
 <li>
@@ -200,44 +115,287 @@
 <p>在使用 Bearer 模式的 Authorization 请求头中：<code>Authorization: Bearer xxxxx.yyyyy.zzzzz</code>。</p>
 </li>
 </ul>
-<h3 id="4-使用-jwt-的应用请求流程">4. 使用 JWT 的应用请求流程<a href="#4-使用-jwt-的应用请求流程" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
-<p><img src="/jwt-request.png" alt="image-20210729161426928"></p>
+<h3 id=4-使用-jwt-的应用请求流程>4. 使用 JWT 的应用请求流程<a href=#4-使用-jwt-的应用请求流程 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p><img src=/jwt-request.png alt=image-20210729161426928></p>
+<h2 id=二外部认证实践>二、外部认证实践<a href=#二外部认证实践 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<h3 id=1-请求流量路径>1. 请求流量路径<a href=#1-请求流量路径 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p><img src=/request-use-external-auth.png alt=image-20210730164202783></p>
+<h3 id=2-在-rancher-上实战>2. 在 Rancher 上实战<a href=#2-在-rancher-上实战 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>GitHub 仓库：</p>
+<ul>
+<li>
+<p><a href=https://github.com/kuhsinyv/external-auth-server>https://github.com/kuhsinyv/external-auth-server</a></p>
+</li>
+<li>
+<p><a href=https://github.com/kuhsinyv/external-auth-client>https://github.com/kuhsinyv/external-auth-client</a></p>
+</li>
+</ul>
+<h4 id=1-编写-auth-server>(1) 编写 Auth Server<a href=#1-编写-auth-server class=hanchor arialabel=Anchor>&#8983;</a> </h4>
+<p>a. 先看路由定义（使用 <code>Gin</code>），其中 <code>/api/v1/token</code> 用以获取 token，<code>/api/v1/auth</code> 用以验证 token。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>router</span>
 
-      </div></div>
+<span style=color:#f92672>import</span> (
+  <span style=color:#e6db74>&#34;eas/internal/api/auth&#34;</span>
+  <span style=color:#e6db74>&#34;eas/internal/middlewares/jwt&#34;</span>
+  <span style=color:#e6db74>&#34;github.com/gin-gonic/gin&#34;</span>
+)
 
-  
-  
-  
+<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>GinRouter</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Engine</span>
 
-  
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>init</span>() {
+  <span style=color:#a6e22e>GinRouter</span> = <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Default</span>()
 
+  <span style=color:#a6e22e>apiV1</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>GinRouter</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/api/v1&#34;</span>)
+  {
+    <span style=color:#a6e22e>apiV1</span>.<span style=color:#a6e22e>GET</span>(<span style=color:#e6db74>&#34;/token&#34;</span>, <span style=color:#a6e22e>auth</span>.<span style=color:#a6e22e>GetToken</span>)
+    <span style=color:#a6e22e>apiV1</span>.<span style=color:#a6e22e>Any</span>(<span style=color:#e6db74>&#34;/auth&#34;</span>, <span style=color:#a6e22e>jwt</span>.<span style=color:#a6e22e>JWT</span>(), <span style=color:#a6e22e>auth</span>.<span style=color:#a6e22e>Auth</span>)
+  }
+}
+</code></pre></div><p>b. <code>/api/v1/token</code> 接口的具体实现。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>auth</span>
+
+<span style=color:#f92672>import</span> (
+  <span style=color:#e6db74>&#34;eas/tools/jwt&#34;</span>
+  <span style=color:#e6db74>&#34;github.com/gin-gonic/gin&#34;</span>
+  <span style=color:#e6db74>&#34;log&#34;</span>
+  <span style=color:#e6db74>&#34;time&#34;</span>
+)
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>GetToken</span>(<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Context</span>) {
+  <span style=color:#66d9ef>if</span> !(<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Query</span>(<span style=color:#e6db74>&#34;username&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;6109119115&#34;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Query</span>(<span style=color:#e6db74>&#34;password&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;123&#34;</span>) {
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>403</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+      <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>1</span>,
+      <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;账号或密码错误&#34;</span>,
+      <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+    })
+
+    <span style=color:#66d9ef>return</span>
+  }
+
+  <span style=color:#a6e22e>claims</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>interface</span>{}{
+    <span style=color:#e6db74>&#34;exp&#34;</span>:      <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Now</span>().<span style=color:#a6e22e>Add</span>(<span style=color:#ae81ff>3</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Hour</span>).<span style=color:#a6e22e>Unix</span>(),
+    <span style=color:#e6db74>&#34;username&#34;</span>: <span style=color:#e6db74>&#34;6109119115&#34;</span>,
+  }
+
+  <span style=color:#a6e22e>tokenString</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>jwt</span>.<span style=color:#a6e22e>GenerateToken</span>(<span style=color:#a6e22e>claims</span>)
+  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>500</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+      <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>2</span>,
+      <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;生成 token 失败&#34;</span>,
+      <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+    })
+
+    <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;api/auth: failed to generate token string: &#34;</span>, <span style=color:#a6e22e>err</span>)
+
+    <span style=color:#66d9ef>return</span>
+  }
+
+  <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>200</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+    <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>0</span>,
+    <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;获取 token 成功&#34;</span>,
+    <span style=color:#e6db74>&#34;data&#34;</span>: <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+      <span style=color:#e6db74>&#34;token&#34;</span>: <span style=color:#a6e22e>tokenString</span>,
+    },
+  })
+}
+</code></pre></div><p>c. 获取、解析 token 的中间件。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>jwt</span>
+
+<span style=color:#f92672>import</span> (
+  <span style=color:#e6db74>&#34;eas/tools/jwt&#34;</span>
+  <span style=color:#e6db74>&#34;github.com/gin-gonic/gin&#34;</span>
+  <span style=color:#e6db74>&#34;net/url&#34;</span>
+  <span style=color:#e6db74>&#34;strings&#34;</span>
+)
+
+<span style=color:#75715e>// getTokenString 从 Request Header 中的 Authorization 获取 JWT，若没有，则从 Query Params 中获取。
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>getTokenString</span>(<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Context</span>) <span style=color:#66d9ef>string</span> {
+  <span style=color:#a6e22e>tokenString</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Request</span>.<span style=color:#a6e22e>Header</span>.<span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#34;Authorization&#34;</span>)
+  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>tokenString</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {
+    <span style=color:#a6e22e>queryParamsToken</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Query</span>(<span style=color:#e6db74>&#34;token&#34;</span>)
+
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>
+
+    <span style=color:#a6e22e>tokenString</span>, <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>url</span>.<span style=color:#a6e22e>QueryUnescape</span>(<span style=color:#a6e22e>queryParamsToken</span>)
+    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+      <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>
+    }
+  }
+
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>tokenString</span>
+}
+
+<span style=color:#75715e>// JWT 认证中间件
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>JWT</span>() <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>HandlerFunc</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Context</span>) {
+    <span style=color:#a6e22e>tokenString</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>getTokenString</span>(<span style=color:#a6e22e>c</span>)
+    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>tokenString</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {
+      <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>AbortWithStatusJSON</span>(<span style=color:#ae81ff>401</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+        <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>1</span>,
+        <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;请附带 jwt 在 Request Headers[Authorization] 或 Query Params[token] 内&#34;</span>,
+        <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+      })
+
+      <span style=color:#66d9ef>return</span>
+    }
+
+    <span style=color:#a6e22e>tokenStringSlice</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>Split</span>(<span style=color:#a6e22e>tokenString</span>, <span style=color:#e6db74>&#34; &#34;</span>)
+    <span style=color:#66d9ef>if</span> len(<span style=color:#a6e22e>tokenStringSlice</span>) <span style=color:#f92672>==</span> <span style=color:#ae81ff>2</span> {
+      <span style=color:#a6e22e>tokenString</span> = <span style=color:#a6e22e>tokenStringSlice</span>[len(<span style=color:#a6e22e>tokenStringSlice</span>)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+    }
+
+    <span style=color:#a6e22e>claims</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>jwt</span>.<span style=color:#a6e22e>ParseTokenWithMapClaims</span>(<span style=color:#a6e22e>tokenString</span>)
+    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+      <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>AbortWithStatusJSON</span>(<span style=color:#ae81ff>401</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+        <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>2</span>,
+        <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;非法的 token&#34;</span>,
+        <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+      })
+
+      <span style=color:#66d9ef>return</span>
+    }
+
+    <span style=color:#a6e22e>username</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> (<span style=color:#f92672>*</span><span style=color:#a6e22e>claims</span>)[<span style=color:#e6db74>&#34;username&#34;</span>].(<span style=color:#66d9ef>string</span>)
+    <span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>ok</span> {
+      <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>AbortWithStatusJSON</span>(<span style=color:#ae81ff>401</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+        <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>3</span>,
+        <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;非法的 payload&#34;</span>,
+        <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+      })
+
+      <span style=color:#66d9ef>return</span>
+    }
+
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Set</span>(<span style=color:#e6db74>&#34;username&#34;</span>, <span style=color:#a6e22e>username</span>)
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Next</span>()
+  }
+}
+</code></pre></div><p>d. 将解析出来的数据添加到约定的 Response Headers 中。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>auth</span>
+
+<span style=color:#f92672>import</span> <span style=color:#e6db74>&#34;github.com/gin-gonic/gin&#34;</span>
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Auth</span>(<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Context</span>) {
+  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>username</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>GetString</span>(<span style=color:#e6db74>&#34;username&#34;</span>); <span style=color:#a6e22e>username</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>401</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+      <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>1</span>,
+      <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;用户未认证&#34;</span>,
+      <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+    })
+  } <span style=color:#66d9ef>else</span> {
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Writer</span>.<span style=color:#a6e22e>Header</span>().<span style=color:#a6e22e>Set</span>(<span style=color:#e6db74>&#34;Username&#34;</span>, <span style=color:#a6e22e>username</span>)
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>200</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+      <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>0</span>,
+      <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;身份认证成功&#34;</span>,
+      <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+    })
+  }
+}
+</code></pre></div><h4 id=2-编写-auth-client>(2) 编写 Auth Client<a href=#2-编写-auth-client class=hanchor arialabel=Anchor>&#8983;</a> </h4>
+<p>a. 先看路由定义（使用 <code>Gin</code>），<code>/api/v1/greeting</code> 将根据外部认证结果来返回。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>router</span>
+
+<span style=color:#f92672>import</span> (
+  <span style=color:#e6db74>&#34;eac/internal/api/greeter&#34;</span>
+  <span style=color:#e6db74>&#34;github.com/gin-gonic/gin&#34;</span>
+)
+
+<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>GinRouter</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Engine</span>
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>init</span>() {
+  <span style=color:#a6e22e>GinRouter</span> = <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Default</span>()
+
+  <span style=color:#a6e22e>apiV1</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>GinRouter</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/api/v1&#34;</span>)
+  {
+    <span style=color:#a6e22e>apiV1</span>.<span style=color:#a6e22e>GET</span>(<span style=color:#e6db74>&#34;/greeting&#34;</span>, <span style=color:#a6e22e>greeter</span>.<span style=color:#a6e22e>Greeting</span>)
+  }
+}
+</code></pre></div><p>b. <code>/api/v1/greeting</code> 具体实现。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>greeter</span>
+
+<span style=color:#f92672>import</span> (
+  <span style=color:#e6db74>&#34;github.com/gin-gonic/gin&#34;</span>
+)
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Greeting</span>(<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Context</span>) {
+  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>username</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>GetHeader</span>(<span style=color:#e6db74>&#34;Username&#34;</span>); <span style=color:#a6e22e>username</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>400</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+      <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>1</span>,
+      <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;获取 Request Headers Username 失败&#34;</span>,
+      <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+    })
+  } <span style=color:#66d9ef>else</span> {
+    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>200</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{
+      <span style=color:#e6db74>&#34;status&#34;</span>:  <span style=color:#ae81ff>0</span>,
+      <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Welcome, &#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>username</span>,
+      <span style=color:#e6db74>&#34;data&#34;</span>:    <span style=color:#66d9ef>nil</span>,
+    })
+  }
+}  
+</code></pre></div><h4 id=3-部署-rancher-工作负载>(3) 部署 Rancher 工作负载<a href=#3-部署-rancher-工作负载 class=hanchor arialabel=Anchor>&#8983;</a> </h4>
+<p>a. Auth Server</p>
+<p><img src=/eas-workload.png alt="Auth Server"></p>
+<p>b. Auth Client</p>
+<p><img src=/eac-workload.png alt="Auth Client"></p>
+<h4 id=4-配置-ingress-rancher-负载均衡>(4) 配置 Ingress (Rancher 负载均衡)<a href=#4-配置-ingress-rancher-负载均衡 class=hanchor arialabel=Anchor>&#8983;</a> </h4>
+<p>a. Auth Server</p>
+<p><img src=/eas-ingress.png alt="Auth Server"></p>
+<p>b. Auth Client</p>
+<p>🌟 在 Auth Client 的 Ingress 配置中添加如下注释。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>nginx.ingress.kubernetes.io/auth-response-headers</span>: <span style=color:#ae81ff>Username</span>
+<span style=color:#f92672>nginx.ingress.kubernetes.io/auth-url</span>: <span style=color:#ae81ff>https://eas.example.com/api/v1/auth</span>
+</code></pre></div><p><img src=/eac-ingress.png alt="Auth Clinet"></p>
+<h4 id=5-测试>(5) 测试<a href=#5-测试 class=hanchor arialabel=Anchor>&#8983;</a> </h4>
+<p>a. 获取 token</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>curl --location --request GET <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#39;https://eas.example.com/api/v1/token?username=6109119115&amp;password=123&#39;</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;data&#34;</span>: {
+      <span style=color:#f92672>&#34;token&#34;</span>: <span style=color:#e6db74>&#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc3NDgxOTQsInVzZXJuYW1lIjoiNjEwOTExOTExNSJ9.zTynNcdUjWnbGXsCs1lZZsVhMpwiUaz6NBYsW9jK41A&#34;</span>
+  },
+  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;获取 token 成功&#34;</span>,
+  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#ae81ff>0</span>
+}
+</code></pre></div><p>b. 验证 Auth Server 作用</p>
+<p>附带 JWT</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>curl --location --request GET <span style=color:#e6db74>&#39;https://eac.example.com/api/v1/greeting&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>--header <span style=color:#e6db74>&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc3NDgxOTQsInVzZXJuYW1lIjoiNjEwOTExOTExNSJ9.zTynNcdUjWnbGXsCs1lZZsVhMpwiUaz6NBYsW9jK41A&#39;</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;data&#34;</span>: <span style=color:#66d9ef>null</span>,
+  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Welcome, 6109119115&#34;</span>,
+  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#ae81ff>0</span>
+}
+</code></pre></div><p>未附带 JWT</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>curl --location --request GET <span style=color:#e6db74>&#39;https://eac.example.com/api/v1/greeting&#39;</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>html</span>&gt;
+
+&lt;<span style=color:#f92672>head</span>&gt;
+  &lt;<span style=color:#f92672>title</span>&gt;500 Internal Server Error&lt;/<span style=color:#f92672>title</span>&gt;
+&lt;/<span style=color:#f92672>head</span>&gt;
+
+&lt;<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>center</span>&gt;
+    &lt;<span style=color:#f92672>h1</span>&gt;500 Internal Server Error&lt;/<span style=color:#f92672>h1</span>&gt;
+  &lt;/<span style=color:#f92672>center</span>&gt;
+  &lt;<span style=color:#f92672>hr</span>&gt;
+  &lt;<span style=color:#f92672>center</span>&gt;nginx&lt;/<span style=color:#f92672>center</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div>
+</div></div>
 </div>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright copyright--user">
-        <span>© 2021 Powered By Hsinyv Ku <a href="https://beian.miit.gov.cn/" target="_blank">赣ICP备20002368号-1</a></span>
-    
-        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
-      </div>
-  </div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Powered By Hsinyv Ku <a href=https://beian.miit.gov.cn/ target=_blank>赣ICP备20002368号-1</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
 </footer>
-
-<script src="/assets/main.js"></script>
-<script src="/assets/prism.js"></script>
-
-
-
-
-
-
-
-  
+<script src=/assets/main.js></script>
+<script src=/assets/prism.js></script>
 </div>
-
 </body>
 </html>

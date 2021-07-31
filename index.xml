@@ -1,1 +1,300 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hsinyv Ku's Space</title><link>/</link><description>Recent content on Hsinyv Ku's Space</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Powered By Hsinyv Ku &lt;a href="https://beian.miit.gov.cn/" target="_blank">赣ICP备20002368号-1&lt;/a></copyright><atom:link href="/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hsinyv Ku's Space</title><link>/</link><description>Recent content on Hsinyv Ku's Space</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Powered By Hsinyv Ku &lt;a href="https://beian.miit.gov.cn/" target="_blank">赣ICP备20002368号-1&lt;/a></copyright><lastBuildDate>Thu, 29 Jul 2021 23:24:06 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>关于我</title><link>/about/about-me/</link><pubDate>Thu, 29 Jul 2021 23:24:06 +0800</pubDate><guid>/about/about-me/</guid><description>Hi there! 🎒 I am an undergraduate student in Nanchang University (majoring in computer science, grade 2019). 💻 I&amp;rsquo;m working on some private projects for my school. 👬 I&amp;rsquo;m working on Internet projects with friends in a cozy &amp;ldquo;family&amp;rdquo; @NCUHOME 🏠! 📚 I&amp;rsquo;m learning about WEB backend development and part of the DevOps. GithHub Stats
+More GitHub</description><content>&lt;h3 id="hi-there">Hi there!&lt;/h3>
+&lt;ul>
+&lt;li>🎒 I am an undergraduate student in Nanchang University (majoring in computer science, grade 2019).&lt;/li>
+&lt;li>💻 I&amp;rsquo;m working on some private projects for my school.&lt;/li>
+&lt;li>👬 I&amp;rsquo;m working on Internet projects with friends in a cozy &amp;ldquo;family&amp;rdquo; &lt;a href="https://github.com/ncuhome">@NCUHOME 🏠&lt;/a>!&lt;/li>
+&lt;li>📚 I&amp;rsquo;m learning about WEB backend development and part of the DevOps.&lt;/li>
+&lt;/ul>
+&lt;h3 id="githhub-stats">GithHub Stats&lt;/h3>
+&lt;p>&lt;a href="https://github.com/anuraghazra/github-readme-stats">&lt;img src="https://github-readme-stats.vercel.app/api?username=kuhsinyv&amp;amp;count_private=true&amp;amp;show_icons=true&amp;amp;theme=default&amp;amp;bg_color=45,69FF97,00E4FF" alt="kuhsinyv&amp;rsquo;s GitHub stats">&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h3 id="more">More&lt;/h3>
+&lt;p>&lt;a href="https://github.com/kuhsinyv/">GitHub&lt;/a>&lt;/p></content></item><item><title>在 k8s 上使用外部认证</title><link>/posts/use-external-auth-on-k8s/</link><pubDate>Thu, 29 Jul 2021 22:11:15 +0800</pubDate><guid>/posts/use-external-auth-on-k8s/</guid><description>一、JSON Web Token 1. 什么是 JWT ？ 详细内容请参考 RFC 7519。 JWT 是一个开放标准，它定义了一种用于将各方之间的信息作为 JSON 对象进行安全地传输的紧凑且自包含的方式。 由于信息被数字签名，因此可以验证和信任。 可以使用 HMAC、RSA 或 ECDSA 算法对 JWT 进行签名。 2. 什么时候该用它？ 请求鉴权 信息传输（可以验证内容是否被篡改） 3. JWT 的结构 三个组成部分
+Header
+{ &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; } Payload
+Registered claims (非强制性的)，如 iss、exp 和 sub 等。 Public claims Private claims { &amp;#34;exp&amp;#34;: 1627544720, &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;username&amp;#34;: &amp;#34;6109119115&amp;#34;, &amp;#34;role&amp;#34;: &amp;#34;admin&amp;#34; } Signature</description><content>&lt;h2 id="一json-web-token">一、JSON Web Token&lt;/h2>
+&lt;h3 id="1-什么是-jwt-">1. 什么是 JWT ？&lt;/h3>
+&lt;ul>
+&lt;li>详细内容请参考 &lt;a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519&lt;/a>。&lt;/li>
+&lt;li>&lt;strong>JWT&lt;/strong> 是一个开放标准，它定义了一种用于&lt;strong>将各方之间的信息作为 JSON 对象进行安全地传输&lt;/strong>的紧凑且自包含的方式。&lt;/li>
+&lt;li>由于信息被数字签名，因此可以验证和信任。&lt;/li>
+&lt;li>可以使用 HMAC、RSA 或 ECDSA 算法对 &lt;strong>JWT&lt;/strong> 进行&lt;strong>签名&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-什么时候该用它">2. 什么时候该用它？&lt;/h3>
+&lt;ul>
+&lt;li>请求鉴权&lt;/li>
+&lt;li>信息传输（可以验证内容是否被篡改）&lt;/li>
+&lt;/ul>
+&lt;h3 id="3-jwt-的结构">3. JWT 的结构&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>三个组成部分&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Header&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;alg&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;HS256&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;typ&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;JWT&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Payload&lt;/p>
+&lt;ul>
+&lt;li>Registered claims (非强制性的)，如 &lt;code>iss&lt;/code>、&lt;code>exp&lt;/code> 和 &lt;code>sub&lt;/code> 等。&lt;/li>
+&lt;li>Public claims&lt;/li>
+&lt;li>Private claims&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;exp&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1627544720&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;sub&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;1234567890&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;username&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;6109119115&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;role&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;admin&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Signature&lt;/p>
+&lt;p>以 HMAC SHA256 算法为例：&lt;/p>
+&lt;pre>&lt;code>HMACSHA256(base64UrlEncode(header) + &amp;quot;.&amp;quot; + base64UrlEncode(payload), secret)
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>一个未经解析的 JWT 看起来像这样：&lt;code>xxxxx.yyyyy.zzzzz&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在使用 Bearer 模式的 Authorization 请求头中：&lt;code>Authorization: Bearer xxxxx.yyyyy.zzzzz&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="4-使用-jwt-的应用请求流程">4. 使用 JWT 的应用请求流程&lt;/h3>
+&lt;p>&lt;img src="/jwt-request.png" alt="image-20210729161426928">&lt;/p>
+&lt;h2 id="二外部认证实践">二、外部认证实践&lt;/h2>
+&lt;h3 id="1-请求流量路径">1. 请求流量路径&lt;/h3>
+&lt;p>&lt;img src="/request-use-external-auth.png" alt="image-20210730164202783">&lt;/p>
+&lt;h3 id="2-在-rancher-上实战">2. 在 Rancher 上实战&lt;/h3>
+&lt;p>GitHub 仓库：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/kuhsinyv/external-auth-server">https://github.com/kuhsinyv/external-auth-server&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/kuhsinyv/external-auth-client">https://github.com/kuhsinyv/external-auth-client&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="1-编写-auth-server">(1) 编写 Auth Server&lt;/h4>
+&lt;p>a. 先看路由定义（使用 &lt;code>Gin&lt;/code>），其中 &lt;code>/api/v1/token&lt;/code> 用以获取 token，&lt;code>/api/v1/auth&lt;/code> 用以验证 token。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">router&lt;/span>
+&lt;span style="color:#f92672">import&lt;/span> (
+&lt;span style="color:#e6db74">&amp;#34;eas/internal/api/auth&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;eas/internal/middlewares/jwt&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;github.com/gin-gonic/gin&amp;#34;&lt;/span>
+)
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">GinRouter&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Engine&lt;/span>
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">init&lt;/span>() {
+&lt;span style="color:#a6e22e">GinRouter&lt;/span> = &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Default&lt;/span>()
+&lt;span style="color:#a6e22e">apiV1&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">GinRouter&lt;/span>.&lt;span style="color:#a6e22e">Group&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/api/v1&amp;#34;&lt;/span>)
+{
+&lt;span style="color:#a6e22e">apiV1&lt;/span>.&lt;span style="color:#a6e22e">GET&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/token&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">auth&lt;/span>.&lt;span style="color:#a6e22e">GetToken&lt;/span>)
+&lt;span style="color:#a6e22e">apiV1&lt;/span>.&lt;span style="color:#a6e22e">Any&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/auth&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">JWT&lt;/span>(), &lt;span style="color:#a6e22e">auth&lt;/span>.&lt;span style="color:#a6e22e">Auth&lt;/span>)
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>b. &lt;code>/api/v1/token&lt;/code> 接口的具体实现。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">auth&lt;/span>
+&lt;span style="color:#f92672">import&lt;/span> (
+&lt;span style="color:#e6db74">&amp;#34;eas/tools/jwt&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;github.com/gin-gonic/gin&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;log&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;time&amp;#34;&lt;/span>
+)
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">GetToken&lt;/span>(&lt;span style="color:#a6e22e">c&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>) {
+&lt;span style="color:#66d9ef">if&lt;/span> !(&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Query&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;username&amp;#34;&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;6109119115&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Query&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;password&amp;#34;&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;123&amp;#34;&lt;/span>) {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">JSON&lt;/span>(&lt;span style="color:#ae81ff">403&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;账号或密码错误&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+&lt;span style="color:#66d9ef">return&lt;/span>
+}
+&lt;span style="color:#a6e22e">claims&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">string&lt;/span>]&lt;span style="color:#66d9ef">interface&lt;/span>{}{
+&lt;span style="color:#e6db74">&amp;#34;exp&amp;#34;&lt;/span>: &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Now&lt;/span>().&lt;span style="color:#a6e22e">Add&lt;/span>(&lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Hour&lt;/span>).&lt;span style="color:#a6e22e">Unix&lt;/span>(),
+&lt;span style="color:#e6db74">&amp;#34;username&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;6109119115&amp;#34;&lt;/span>,
+}
+&lt;span style="color:#a6e22e">tokenString&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">GenerateToken&lt;/span>(&lt;span style="color:#a6e22e">claims&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">JSON&lt;/span>(&lt;span style="color:#ae81ff">500&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">2&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;生成 token 失败&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+&lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;api/auth: failed to generate token string: &amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;span style="color:#66d9ef">return&lt;/span>
+}
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">JSON&lt;/span>(&lt;span style="color:#ae81ff">200&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;获取 token 成功&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;token&amp;#34;&lt;/span>: &lt;span style="color:#a6e22e">tokenString&lt;/span>,
+},
+})
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>c. 获取、解析 token 的中间件。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">jwt&lt;/span>
+&lt;span style="color:#f92672">import&lt;/span> (
+&lt;span style="color:#e6db74">&amp;#34;eas/tools/jwt&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;github.com/gin-gonic/gin&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;net/url&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;strings&amp;#34;&lt;/span>
+)
+&lt;span style="color:#75715e">// getTokenString 从 Request Header 中的 Authorization 获取 JWT，若没有，则从 Query Params 中获取。
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">getTokenString&lt;/span>(&lt;span style="color:#a6e22e">c&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>) &lt;span style="color:#66d9ef">string&lt;/span> {
+&lt;span style="color:#a6e22e">tokenString&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Request&lt;/span>.&lt;span style="color:#a6e22e">Header&lt;/span>.&lt;span style="color:#a6e22e">Get&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Authorization&amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">tokenString&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span> {
+&lt;span style="color:#a6e22e">queryParamsToken&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Query&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;token&amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#66d9ef">error&lt;/span>
+&lt;span style="color:#a6e22e">tokenString&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> = &lt;span style="color:#a6e22e">url&lt;/span>.&lt;span style="color:#a6e22e">QueryUnescape&lt;/span>(&lt;span style="color:#a6e22e">queryParamsToken&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">tokenString&lt;/span>
+}
+&lt;span style="color:#75715e">// JWT 认证中间件
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">JWT&lt;/span>() &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">HandlerFunc&lt;/span> {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">func&lt;/span>(&lt;span style="color:#a6e22e">c&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>) {
+&lt;span style="color:#a6e22e">tokenString&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">getTokenString&lt;/span>(&lt;span style="color:#a6e22e">c&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">tokenString&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">AbortWithStatusJSON&lt;/span>(&lt;span style="color:#ae81ff">401&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;请附带 jwt 在 Request Headers[Authorization] 或 Query Params[token] 内&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+&lt;span style="color:#66d9ef">return&lt;/span>
+}
+&lt;span style="color:#a6e22e">tokenStringSlice&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">strings&lt;/span>.&lt;span style="color:#a6e22e">Split&lt;/span>(&lt;span style="color:#a6e22e">tokenString&lt;/span>, &lt;span style="color:#e6db74">&amp;#34; &amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> len(&lt;span style="color:#a6e22e">tokenStringSlice&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> {
+&lt;span style="color:#a6e22e">tokenString&lt;/span> = &lt;span style="color:#a6e22e">tokenStringSlice&lt;/span>[len(&lt;span style="color:#a6e22e">tokenStringSlice&lt;/span>)&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>]
+}
+&lt;span style="color:#a6e22e">claims&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">ParseTokenWithMapClaims&lt;/span>(&lt;span style="color:#a6e22e">tokenString&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">AbortWithStatusJSON&lt;/span>(&lt;span style="color:#ae81ff">401&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">2&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;非法的 token&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+&lt;span style="color:#66d9ef">return&lt;/span>
+}
+&lt;span style="color:#a6e22e">username&lt;/span>, &lt;span style="color:#a6e22e">ok&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">claims&lt;/span>)[&lt;span style="color:#e6db74">&amp;#34;username&amp;#34;&lt;/span>].(&lt;span style="color:#66d9ef">string&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> !&lt;span style="color:#a6e22e">ok&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">AbortWithStatusJSON&lt;/span>(&lt;span style="color:#ae81ff">401&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">3&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;非法的 payload&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+&lt;span style="color:#66d9ef">return&lt;/span>
+}
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Set&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;username&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">username&lt;/span>)
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Next&lt;/span>()
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>d. 将解析出来的数据添加到约定的 Response Headers 中。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">auth&lt;/span>
+&lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;#34;github.com/gin-gonic/gin&amp;#34;&lt;/span>
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">Auth&lt;/span>(&lt;span style="color:#a6e22e">c&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>) {
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">username&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">GetString&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;username&amp;#34;&lt;/span>); &lt;span style="color:#a6e22e">username&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">JSON&lt;/span>(&lt;span style="color:#ae81ff">401&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;用户未认证&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+} &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Writer&lt;/span>.&lt;span style="color:#a6e22e">Header&lt;/span>().&lt;span style="color:#a6e22e">Set&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Username&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">username&lt;/span>)
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">JSON&lt;/span>(&lt;span style="color:#ae81ff">200&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;身份认证成功&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="2-编写-auth-client">(2) 编写 Auth Client&lt;/h4>
+&lt;p>a. 先看路由定义（使用 &lt;code>Gin&lt;/code>），&lt;code>/api/v1/greeting&lt;/code> 将根据外部认证结果来返回。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">router&lt;/span>
+&lt;span style="color:#f92672">import&lt;/span> (
+&lt;span style="color:#e6db74">&amp;#34;eac/internal/api/greeter&amp;#34;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;github.com/gin-gonic/gin&amp;#34;&lt;/span>
+)
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">GinRouter&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Engine&lt;/span>
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">init&lt;/span>() {
+&lt;span style="color:#a6e22e">GinRouter&lt;/span> = &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Default&lt;/span>()
+&lt;span style="color:#a6e22e">apiV1&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">GinRouter&lt;/span>.&lt;span style="color:#a6e22e">Group&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/api/v1&amp;#34;&lt;/span>)
+{
+&lt;span style="color:#a6e22e">apiV1&lt;/span>.&lt;span style="color:#a6e22e">GET&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/greeting&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">greeter&lt;/span>.&lt;span style="color:#a6e22e">Greeting&lt;/span>)
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>b. &lt;code>/api/v1/greeting&lt;/code> 具体实现。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">greeter&lt;/span>
+&lt;span style="color:#f92672">import&lt;/span> (
+&lt;span style="color:#e6db74">&amp;#34;github.com/gin-gonic/gin&amp;#34;&lt;/span>
+)
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">Greeting&lt;/span>(&lt;span style="color:#a6e22e">c&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>) {
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">username&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">GetHeader&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Username&amp;#34;&lt;/span>); &lt;span style="color:#a6e22e">username&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">JSON&lt;/span>(&lt;span style="color:#ae81ff">400&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;获取 Request Headers Username 失败&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+} &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">JSON&lt;/span>(&lt;span style="color:#ae81ff">200&lt;/span>, &lt;span style="color:#a6e22e">gin&lt;/span>.&lt;span style="color:#a6e22e">H&lt;/span>{
+&lt;span style="color:#e6db74">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Welcome, &amp;#34;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">username&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">nil&lt;/span>,
+})
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="3-部署-rancher-工作负载">(3) 部署 Rancher 工作负载&lt;/h4>
+&lt;p>a. Auth Server&lt;/p>
+&lt;p>&lt;img src="/eas-workload.png" alt="Auth Server">&lt;/p>
+&lt;p>b. Auth Client&lt;/p>
+&lt;p>&lt;img src="/eac-workload.png" alt="Auth Client">&lt;/p>
+&lt;h4 id="4-配置-ingress-rancher-负载均衡">(4) 配置 Ingress (Rancher 负载均衡)&lt;/h4>
+&lt;p>a. Auth Server&lt;/p>
+&lt;p>&lt;img src="/eas-ingress.png" alt="Auth Server">&lt;/p>
+&lt;p>b. Auth Client&lt;/p>
+&lt;p>🌟 在 Auth Client 的 Ingress 配置中添加如下注释。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">nginx.ingress.kubernetes.io/auth-response-headers&lt;/span>: &lt;span style="color:#ae81ff">Username&lt;/span>
+&lt;span style="color:#f92672">nginx.ingress.kubernetes.io/auth-url&lt;/span>: &lt;span style="color:#ae81ff">https://eas.example.com/api/v1/auth&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="/eac-ingress.png" alt="Auth Clinet">&lt;/p>
+&lt;h4 id="5-测试">(5) 测试&lt;/h4>
+&lt;p>a. 获取 token&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --location --request GET &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>&lt;span style="color:#e6db74">&amp;#39;https://eas.example.com/api/v1/token?username=6109119115&amp;amp;password=123&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;data&amp;#34;&lt;/span>: {
+&lt;span style="color:#f92672">&amp;#34;token&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc3NDgxOTQsInVzZXJuYW1lIjoiNjEwOTExOTExNSJ9.zTynNcdUjWnbGXsCs1lZZsVhMpwiUaz6NBYsW9jK41A&amp;#34;&lt;/span>
+},
+&lt;span style="color:#f92672">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;获取 token 成功&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>b. 验证 Auth Server 作用&lt;/p>
+&lt;p>附带 JWT&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --location --request GET &lt;span style="color:#e6db74">&amp;#39;https://eac.example.com/api/v1/greeting&amp;#39;&lt;/span> &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>--header &lt;span style="color:#e6db74">&amp;#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjc3NDgxOTQsInVzZXJuYW1lIjoiNjEwOTExOTExNSJ9.zTynNcdUjWnbGXsCs1lZZsVhMpwiUaz6NBYsW9jK41A&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;data&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Welcome, 6109119115&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>未附带 JWT&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --location --request GET &lt;span style="color:#e6db74">&amp;#39;https://eac.example.com/api/v1/greeting&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">&amp;lt;&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;500 Internal Server Error&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">center&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">h1&lt;/span>&amp;gt;500 Internal Server Error&amp;lt;/&lt;span style="color:#f92672">h1&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">center&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">hr&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">center&lt;/span>&amp;gt;nginx&amp;lt;/&lt;span style="color:#f92672">center&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div></content></item></channel></rss>
