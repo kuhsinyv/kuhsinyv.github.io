@@ -1,4 +1,4 @@
-baseurl = "https://gxy.ink/"
+baseurl = "https://blog.gxy.ink/"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
