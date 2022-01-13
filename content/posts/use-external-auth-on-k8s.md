@@ -1,16 +1,27 @@
-+++
-title = "在 k8s 上使用外部认证"
-date = "2021-07-29T22:11:15+08:00"
-author = "kuhsinyv"
-authorTwitter = "" #do not include @
-cover = "/k8s-ingress-nginx.png"
-tags = ["kubernetes", "ingress-nginx", "jwt", "go", "gin"]
-keywords = ["external auth", "jwt"]
-description = "使用 nginx-ingress 和 Auth Service 认证请求"
-showFullContent = false
-draft = false
-publishDate = "2021-07-30T12:00:00+08:00"
-+++
+---
+title: "在 k8s 上使用外部认证"
+description: "使用 ingress-nginx 和 Auth Service 认证请求"
+date: "2021-07-29"
+lastmod: "2022-01-13"
+author: "Hsinyv Ku"
+cover: "/images/k8s-ingress-nginx.png"
+isCJKLanguage: true
+categories: 
+  - "随笔"
+tags: 
+  - "Kubernetes"
+  - "ingress-nginx"
+  - "JWT"
+  - "Go"
+  - "Gin"
+keywords:
+  - "ingress"
+  - "nginx"
+  - "k8s"
+  - "认证"
+  - "jwt"
+  - "go"
+---
 
 ## 一、JSON Web Token
 
@@ -68,13 +79,13 @@ publishDate = "2021-07-30T12:00:00+08:00"
 
 ### 4. 使用 JWT 的应用请求流程
 
-![image-20210729161426928](/jwt-request.png) 
+![image-20210729161426928](/images/jwt-request.png) 
 
 ## 二、外部认证实践
 
 ### 1. 请求流量路径
 
-![image-20210730164202783](/request-use-external-auth.png)
+![image-20210730164202783](/images/request-use-external-auth.png)
 
 ### 2. 在 Rancher 上实战
 
@@ -316,17 +327,17 @@ publishDate = "2021-07-30T12:00:00+08:00"
 
   a. Auth Server
 
-  ![Auth Server](/eas-workload.png)
+  ![Auth Server](/images/eas-workload.png)
 
   b. Auth Client
 
-  ![Auth Client](/eac-workload.png)
+  ![Auth Client](/images/eac-workload.png)
 
 #### (4) 配置 Ingress (Rancher 负载均衡)
 
   a. Auth Server
 
-  ![Auth Server](/eas-ingress.png)
+  ![Auth Server](/images/eas-ingress.png)
 
   b. Auth Client
 
@@ -337,7 +348,7 @@ publishDate = "2021-07-30T12:00:00+08:00"
   nginx.ingress.kubernetes.io/auth-url: https://eas.example.com/api/v1/auth
   ```
 
-  ![Auth Clinet](/eac-ingress.png)
+  ![Auth Clinet](/images/eac-ingress.png)
 
 #### (5) 测试
 

@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://gxy.ink/"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
@@ -12,7 +12,7 @@ paginate = 5
   themeColor = "orange"
 
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
+  showMenuItems = 5
 
   # show selector to switch language
   showLanguageSelector = false
@@ -28,13 +28,19 @@ paginate = 5
 
   # set post to show the last updated
   # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
-  showLastUpdated = false
+  showLastUpdated = true
   # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
-  # updatedDatePrefix = "Updated"
+  updatedDatePrefix = "Updated"
+
+  readingTIme = true
 
   # set all headings to their default size (depending on browser settings)
   # it's set to `true` by default
   # oneHeadingSize = false
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
 
 [languages]
   [languages.en]
@@ -66,3 +72,11 @@ paginate = 5
         identifier = "posts"
         name = "Posts"
         url = "/posts"
+      [[languages.en.menu.main]]
+        identifier = "tags"
+        name = "Tags"
+        url = "/tags"
+      [[languages.en.menu.main]]
+        identifier = "categories"
+        name = "Categories"
+        url = "/categories"
