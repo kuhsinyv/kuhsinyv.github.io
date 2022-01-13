@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hsinyv Ku's Space</title><link>https://gxy.ink/</link><description>Recent content on Hsinyv Ku's Space</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Powered By Hsinyv Ku &lt;a href="https://beian.miit.gov.cn/" target="_blank">赣ICP备20002368号-1&lt;/a></copyright><lastBuildDate>Thu, 29 Jul 2021 23:24:06 +0800</lastBuildDate><atom:link href="https://gxy.ink/index.xml" rel="self" type="application/rss+xml"/><item><title>关于我</title><link>https://gxy.ink/about/about-me/</link><pubDate>Thu, 29 Jul 2021 23:24:06 +0800</pubDate><guid>https://gxy.ink/about/about-me/</guid><description>Hi there! 🎒 I am an undergraduate student in Nanchang University (majoring in computer science, grade 2019). 💻 I&amp;rsquo;m working on some private projects for my school. 👬 I&amp;rsquo;m working on Internet projects with friends in a cozy &amp;ldquo;family&amp;rdquo; @NCUHOME 🏠! 📚 I&amp;rsquo;m learning about WEB backend development and part of the DevOps. GithHub Stats
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hsinyv Ku's Space</title><link>https://blog.gxy.ink/</link><description>Recent content on Hsinyv Ku's Space</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Powered By Hsinyv Ku &lt;a href="https://beian.miit.gov.cn/" target="_blank">赣ICP备20002368号-1&lt;/a></copyright><lastBuildDate>Thu, 29 Jul 2021 23:24:06 +0800</lastBuildDate><atom:link href="https://blog.gxy.ink/index.xml" rel="self" type="application/rss+xml"/><item><title>关于我</title><link>https://blog.gxy.ink/about/about-me/</link><pubDate>Thu, 29 Jul 2021 23:24:06 +0800</pubDate><guid>https://blog.gxy.ink/about/about-me/</guid><description>Hi there! 🎒 I am an undergraduate student in Nanchang University (majoring in computer science, grade 2019). 💻 I&amp;rsquo;m working on some private projects for my school. 👬 I&amp;rsquo;m working on Internet projects with friends in a cozy &amp;ldquo;family&amp;rdquo; @NCUHOME 🏠! 📚 I&amp;rsquo;m learning about WEB backend development and part of the DevOps. GithHub Stats
 More GitHub</description><content>&lt;h3 id="hi-there">Hi there!&lt;/h3>
 &lt;ul>
 &lt;li>🎒 I am an undergraduate student in Nanchang University (majoring in computer science, grade 2019).&lt;/li>
@@ -10,7 +10,7 @@ More GitHub</description><content>&lt;h3 id="hi-there">Hi there!&lt;/h3>
 &lt;p>&lt;a href="https://github.com/anuraghazra/github-readme-stats">&lt;img src="https://github-readme-stats.vercel.app/api?username=kuhsinyv&amp;amp;count_private=true&amp;amp;show_icons=true&amp;amp;theme=default&amp;amp;bg_color=45,69FF97,00E4FF" alt="kuhsinyv&amp;rsquo;s GitHub stats">&lt;/a>&lt;/p>
 &lt;hr>
 &lt;h3 id="more">More&lt;/h3>
-&lt;p>&lt;a href="https://github.com/kuhsinyv/">GitHub&lt;/a>&lt;/p></content></item><item><title>在 k8s 上使用外部认证</title><link>https://gxy.ink/posts/use-external-auth-on-k8s/</link><pubDate>Thu, 29 Jul 2021 00:00:00 +0000</pubDate><guid>https://gxy.ink/posts/use-external-auth-on-k8s/</guid><description>一、JSON Web Token 1. 什么是 JWT ？ 详细内容请参考 RFC 7519。 JWT 是一个开放标准，它定义了一种用于将各方之间的信息作为 JSON 对象进行安全地传输的紧凑且自包</description><content>&lt;h2 id="一json-web-token">一、JSON Web Token&lt;/h2>
+&lt;p>&lt;a href="https://github.com/kuhsinyv/">GitHub&lt;/a>&lt;/p></content></item><item><title>在 k8s 上使用外部认证</title><link>https://blog.gxy.ink/posts/use-external-auth-on-k8s/</link><pubDate>Thu, 29 Jul 2021 00:00:00 +0000</pubDate><guid>https://blog.gxy.ink/posts/use-external-auth-on-k8s/</guid><description>一、JSON Web Token 1. 什么是 JWT ？ 详细内容请参考 RFC 7519。 JWT 是一个开放标准，它定义了一种用于将各方之间的信息作为 JSON 对象进行安全地传输的紧凑且自包</description><content>&lt;h2 id="一json-web-token">一、JSON Web Token&lt;/h2>
 &lt;h3 id="1-什么是-jwt-">1. 什么是 JWT ？&lt;/h3>
 &lt;ul>
 &lt;li>详细内容请参考 &lt;a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519&lt;/a>。&lt;/li>
@@ -64,10 +64,10 @@ More GitHub</description><content>&lt;h3 id="hi-there">Hi there!&lt;/h3>
 &lt;/li>
 &lt;/ul>
 &lt;h3 id="4-使用-jwt-的应用请求流程">4. 使用 JWT 的应用请求流程&lt;/h3>
-&lt;p>&lt;img src="https://gxy.ink/images/jwt-request.png" alt="image-20210729161426928">&lt;/p>
+&lt;p>&lt;img src="https://blog.gxy.ink/images/jwt-request.png" alt="image-20210729161426928">&lt;/p>
 &lt;h2 id="二外部认证实践">二、外部认证实践&lt;/h2>
 &lt;h3 id="1-请求流量路径">1. 请求流量路径&lt;/h3>
-&lt;p>&lt;img src="https://gxy.ink/images/request-use-external-auth.png" alt="image-20210730164202783">&lt;/p>
+&lt;p>&lt;img src="https://blog.gxy.ink/images/request-use-external-auth.png" alt="image-20210730164202783">&lt;/p>
 &lt;h3 id="2-在-rancher-上实战">2. 在 Rancher 上实战&lt;/h3>
 &lt;p>GitHub 仓库：&lt;/p>
 &lt;ul>
@@ -249,17 +249,17 @@ More GitHub</description><content>&lt;h3 id="hi-there">Hi there!&lt;/h3>
 }
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="3-部署-rancher-工作负载">(3) 部署 Rancher 工作负载&lt;/h4>
 &lt;p>a. Auth Server&lt;/p>
-&lt;p>&lt;img src="https://gxy.ink/images/eas-workload.png" alt="Auth Server">&lt;/p>
+&lt;p>&lt;img src="https://blog.gxy.ink/images/eas-workload.png" alt="Auth Server">&lt;/p>
 &lt;p>b. Auth Client&lt;/p>
-&lt;p>&lt;img src="https://gxy.ink/images/eac-workload.png" alt="Auth Client">&lt;/p>
+&lt;p>&lt;img src="https://blog.gxy.ink/images/eac-workload.png" alt="Auth Client">&lt;/p>
 &lt;h4 id="4-配置-ingress-rancher-负载均衡">(4) 配置 Ingress (Rancher 负载均衡)&lt;/h4>
 &lt;p>a. Auth Server&lt;/p>
-&lt;p>&lt;img src="https://gxy.ink/images/eas-ingress.png" alt="Auth Server">&lt;/p>
+&lt;p>&lt;img src="https://blog.gxy.ink/images/eas-ingress.png" alt="Auth Server">&lt;/p>
 &lt;p>b. Auth Client&lt;/p>
 &lt;p>🌟 在 Auth Client 的 Ingress 配置中添加如下注释。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">nginx.ingress.kubernetes.io/auth-response-headers&lt;/span>: &lt;span style="color:#ae81ff">Username&lt;/span>
 &lt;span style="color:#f92672">nginx.ingress.kubernetes.io/auth-url&lt;/span>: &lt;span style="color:#ae81ff">https://eas.example.com/api/v1/auth&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://gxy.ink/images/eac-ingress.png" alt="Auth Clinet">&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://blog.gxy.ink/images/eac-ingress.png" alt="Auth Clinet">&lt;/p>
 &lt;h4 id="5-测试">(5) 测试&lt;/h4>
 &lt;p>a. 获取 token&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --location --request GET &lt;span style="color:#ae81ff">\
