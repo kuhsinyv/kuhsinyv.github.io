@@ -5,7 +5,7 @@ date: "2021-07-29"
 lastmod: "2022-01-13"
 author: "Hsinyv Ku"
 cover: "/images/k8s-ingress-nginx.png"
-isCJKLanguage: true
+toc: true
 categories: 
   - "随笔"
 tags: 

@@ -2,6 +2,7 @@ baseurl = "https://blog.gxy.ink/"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
+hasCJKLanguage = true
 
 [params]
   # dir name of your main content (default is `content/posts`).
@@ -50,7 +51,7 @@ paginate = 5
     subtitle = ""
     owner = ""
     keywords = ""
-    copyright = "© 2021 Powered By Hsinyv Ku <a href=\"https://beian.miit.gov.cn/\" target=\"_blank\">赣ICP备20002368号-1</a>"
+    copyright = "© 2021 Powered By Hsinyv Ku :: <a href=\"https://beian.miit.gov.cn/\" target=\"_blank\">赣ICP备20002368号-1</a>"
     menuMore = "Show more"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
