@@ -3,24 +3,25 @@
 <title>在 k8s 上使用外部认证 :: Hsinyv Ku's Space</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="使用 nginx-ingress 和 Auth Service 认证请求">
-<meta name=keywords content="external auth,jwt">
+<meta name=description content="使用 ingress-nginx 和 Auth Service 认证请求">
+<meta name=keywords content="ingress,nginx,k8s,认证,jwt,go">
 <meta name=robots content="noodp">
-<link rel=canonical href=/posts/use-external-auth-on-k8s/>
-<link rel=stylesheet href=/assets/style.css>
-<link rel=apple-touch-icon href=/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/img/favicon/orange.png>
+<link rel=canonical href=https://gxy.ink/posts/use-external-auth-on-k8s/>
+<link rel=stylesheet href=https://gxy.ink/assets/style.css>
+<link rel=apple-touch-icon href=https://gxy.ink/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://gxy.ink/img/favicon/orange.png>
 <meta name=twitter:card content="summary">
 <meta property="og:locale" content="en">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 k8s 上使用外部认证">
-<meta property="og:description" content="使用 nginx-ingress 和 Auth Service 认证请求">
-<meta property="og:url" content="/posts/use-external-auth-on-k8s/">
+<meta property="og:description" content="使用 ingress-nginx 和 Auth Service 认证请求">
+<meta property="og:url" content="https://gxy.ink/posts/use-external-auth-on-k8s/">
 <meta property="og:site_name" content="Hsinyv Ku's Space">
-<meta property="og:image" content="/k8s-ingress-nginx.png">
+<meta property="og:image" content="https://gxy.ink/images/k8s-ingress-nginx.png">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2021-07-29 22:11:15 +0800 +0800">
+<meta property="article:section" content="随笔">
+<meta property="article:published_time" content="2021-07-29 00:00:00 +0000 UTC">
 </head>
 <body class=orange>
 <div class="container center headings--one-size">
@@ -38,32 +39,38 @@ Hsinyv Ku
 <nav class=menu>
 <ul class="menu__inner menu__inner--desktop">
 <li><a href=/about>About</a></li>
+<li><a href=/categories>Categories</a></li>
 <li><a href=/posts>Posts</a></li>
+<li><a href=/tags>Tags</a></li>
 </ul>
 <ul class="menu__inner menu__inner--mobile">
 <li><a href=/about>About</a></li>
+<li><a href=/categories>Categories</a></li>
 <li><a href=/posts>Posts</a></li>
+<li><a href=/tags>Tags</a></li>
 </ul>
 </nav>
 </header>
 <div class=content>
 <div class=post>
 <h1 class=post-title>
-<a href=/posts/use-external-auth-on-k8s/>在 k8s 上使用外部认证</a></h1>
+<a href=https://gxy.ink/posts/use-external-auth-on-k8s/>在 k8s 上使用外部认证</a></h1>
 <div class=post-meta>
 <span class=post-date>
 2021-07-29
+[Updated: 2022-01-13]
 </span>
-<span class=post-author>:: kuhsinyv</span>
+<span class=post-author>:: Hsinyv Ku</span>
+<span class=post-reading-time>:: 3 min read (1146 words)</span>
 </div>
 <span class=post-tags>
-#<a href=/tags/kubernetes/>kubernetes</a>&nbsp;
-#<a href=/tags/ingress-nginx/>ingress-nginx</a>&nbsp;
-#<a href=/tags/jwt/>jwt</a>&nbsp;
-#<a href=/tags/go/>go</a>&nbsp;
-#<a href=/tags/gin/>gin</a>&nbsp;
+#<a href=https://gxy.ink/tags/kubernetes/>Kubernetes</a>&nbsp;
+#<a href=https://gxy.ink/tags/ingress-nginx/>ingress-nginx</a>&nbsp;
+#<a href=https://gxy.ink/tags/jwt/>JWT</a>&nbsp;
+#<a href=https://gxy.ink/tags/go/>Go</a>&nbsp;
+#<a href=https://gxy.ink/tags/gin/>Gin</a>&nbsp;
 </span>
-<img src=/k8s-ingress-nginx.png class=post-cover alt="在 k8s 上使用外部认证">
+<img src=https://gxy.ink/images/k8s-ingress-nginx.png class=post-cover alt="在 k8s 上使用外部认证" title="Cover Image">
 <div class=post-content><div>
 <h2 id=一json-web-token>一、JSON Web Token<a href=#一json-web-token class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <h3 id=1-什么是-jwt->1. 什么是 JWT ？<a href=#1-什么是-jwt- class=hanchor arialabel=Anchor>&#8983;</a> </h3>
@@ -107,7 +114,7 @@ Hsinyv Ku
 <li>
 <p>Signature</p>
 <p>以 HMAC SHA256 算法为例：</p>
-<pre><code>HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload), secret)
+<pre tabindex=0><code>HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload), secret)
 </code></pre></li>
 </ul>
 </li>
@@ -119,10 +126,10 @@ Hsinyv Ku
 </li>
 </ul>
 <h3 id=4-使用-jwt-的应用请求流程>4. 使用 JWT 的应用请求流程<a href=#4-使用-jwt-的应用请求流程 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p><img src=/jwt-request.png alt=image-20210729161426928></p>
+<p><img src=/images/jwt-request.png alt=image-20210729161426928></p>
 <h2 id=二外部认证实践>二、外部认证实践<a href=#二外部认证实践 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <h3 id=1-请求流量路径>1. 请求流量路径<a href=#1-请求流量路径 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p><img src=/request-use-external-auth.png alt=image-20210730164202783></p>
+<p><img src=/images/request-use-external-auth.png alt=image-20210730164202783></p>
 <h3 id=2-在-rancher-上实战>2. 在 Rancher 上实战<a href=#2-在-rancher-上实战 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
 <p>GitHub 仓库：</p>
 <ul>
@@ -337,17 +344,17 @@ Hsinyv Ku
 }  
 </code></pre></div><h4 id=3-部署-rancher-工作负载>(3) 部署 Rancher 工作负载<a href=#3-部署-rancher-工作负载 class=hanchor arialabel=Anchor>&#8983;</a> </h4>
 <p>a. Auth Server</p>
-<p><img src=/eas-workload.png alt="Auth Server"></p>
+<p><img src=/images/eas-workload.png alt="Auth Server"></p>
 <p>b. Auth Client</p>
-<p><img src=/eac-workload.png alt="Auth Client"></p>
+<p><img src=/images/eac-workload.png alt="Auth Client"></p>
 <h4 id=4-配置-ingress-rancher-负载均衡>(4) 配置 Ingress (Rancher 负载均衡)<a href=#4-配置-ingress-rancher-负载均衡 class=hanchor arialabel=Anchor>&#8983;</a> </h4>
 <p>a. Auth Server</p>
-<p><img src=/eas-ingress.png alt="Auth Server"></p>
+<p><img src=/images/eas-ingress.png alt="Auth Server"></p>
 <p>b. Auth Client</p>
 <p>🌟 在 Auth Client 的 Ingress 配置中添加如下注释。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>nginx.ingress.kubernetes.io/auth-response-headers</span>: <span style=color:#ae81ff>Username</span>
 <span style=color:#f92672>nginx.ingress.kubernetes.io/auth-url</span>: <span style=color:#ae81ff>https://eas.example.com/api/v1/auth</span>
-</code></pre></div><p><img src=/eac-ingress.png alt="Auth Clinet"></p>
+</code></pre></div><p><img src=/images/eac-ingress.png alt="Auth Clinet"></p>
 <h4 id=5-测试>(5) 测试<a href=#5-测试 class=hanchor arialabel=Anchor>&#8983;</a> </h4>
 <p>a. 获取 token</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>curl --location --request GET <span style=color:#ae81ff>\
@@ -397,8 +404,8 @@ Hsinyv Ku
 </div>
 </div>
 </footer>
-<script src=/assets/main.js></script>
-<script src=/assets/prism.js></script>
+<script src=https://gxy.ink/assets/main.js></script>
+<script src=https://gxy.ink/assets/prism.js></script>
 </div>
 </body>
 </html>
